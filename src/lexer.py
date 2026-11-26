@@ -10,6 +10,11 @@ PALAVRAS_RESERVADAS = {
     "print": "PRINT", "true": "TRUE", "false": "FALSE",
 }
 
+DIGITOS = "0123456789"
+LETRAS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+INICIO_ID = LETRAS + "_"
+CORPO_ID = LETRAS + DIGITOS + "_"
+
 SIMBOLOS = {
     "(": "LPAREN", ")": "RPAREN", "{": "LBRACE", "}": "RBRACE", ";": "SEMI",
     "+": "MAIS", "-": "MENOS", "*": "VEZES", "/": "DIV",
@@ -76,11 +81,11 @@ def tokenizar(texto):
         l0, c0 = linha, coluna
 
         # número: digito+ (não pode vir colado em letra, ex.: 1x)
-        if c.isdigit():
+        if c in DIGITOS:
             ini = i
-            while i < n and texto[i].isdigit():
+            while i < n and texto[i] in DIGITOS:
                 avancar()
-            if i < n and (texto[i].isalpha() or texto[i] == "_"):
+            if i < n and texto[i] in INICIO_ID:
                 raise LexError(
                     "identificador não pode começar com dígito "
                     f"('{texto[ini:i + 1]}...')", l0, c0)
@@ -88,9 +93,9 @@ def tokenizar(texto):
             continue
 
         # identificador ou palavra reservada
-        if c.isalpha() or c == "_":
+        if c in INICIO_ID:
             ini = i
-            while i < n and (texto[i].isalnum() or texto[i] == "_"):
+            while i < n and texto[i] in CORPO_ID:
                 avancar()
             lex = texto[ini:i]
             tokens.append(Token(PALAVRAS_RESERVADAS.get(lex, "ID"), lex, l0, c0))

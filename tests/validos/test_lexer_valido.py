@@ -55,3 +55,6 @@ def test_for_completo():
 
 def test_entrada_vazia():
     assert tipos("") == ["EOF"]
+
+def test_identificadores_ascii_com_underscore_e_digito():
+    assert tipos("_a1 B_2 x9") == ["ID", "ID", "ID", "EOF"]

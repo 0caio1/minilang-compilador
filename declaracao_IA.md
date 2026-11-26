@@ -21,6 +21,7 @@ A IA serviu como ponto de partida. Ela gerou rascunhos iniciais, e o grupo usou 
  
 - Rodamos a suíte de testes (21 testes passando) antes de commitar o lexer.
 - Conferimos arquivo por arquivo o conteúdo dos testes, dos exemplos e da AST antes de cada commit.
+- Caio aplicou no lexer a correção apontada pelo Claude (identificadores e números só em ASCII) e incluiu os testes novos que cobrem o caso.
 
 ## Observações
  

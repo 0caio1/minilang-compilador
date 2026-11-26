@@ -32,3 +32,14 @@ def test_exclamacao_sozinha():
 def test_cifrao():
     with pytest.raises(LexError):
         tokenizar("$a = 1;")
+
+def test_identificador_com_acento():
+    with pytest.raises(LexError) as e:
+        tokenizar("ação = 1;")
+    assert "caractere inválido" in str(e.value)
+    assert (e.value.linha, e.value.coluna) == (1, 2)
+
+
+def test_digito_nao_ascii():
+    with pytest.raises(LexError):
+        tokenizar("x = 5²;")
