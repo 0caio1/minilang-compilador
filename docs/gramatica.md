@@ -96,4 +96,50 @@ fator        = NUM | "true" | "false" | ID | "(" expressao ")" ;
 
 ## Exemplos comentados
 
-_A fazer: 5 exemplos (válido e inválido de cada categoria, incluindo `for (i = 0; i < 10) { ... }`), cada um indicando a regra violada._
+### Exemplo 1: programa válido
+
+```
+x = 3;
+while (x > 0) {
+  print(x);
+  x = x - 1;
+}
+soma = 0;
+for (i = 0; i < 5; i = i + 1) {
+  soma = soma + i;
+}
+```
+
+**Por que é válido:** segue todas as regras da gramática. O `while` tem condição entre parênteses e um bloco, e o `for` tem as três cláusulas (inicialização, condição e atualização) separadas por `;`. Todas as variáveis estão definidas antes do uso e as condições são booleanas.
+
+### Exemplo 2: inválido léxico
+
+```
+x = 5 @ 3;
+```
+
+**Por que é inválido:** o caractere `@` não pertence ao conjunto de símbolos reconhecidos pelo lexer da linguagem. Como não existe um token correspondente a esse caractere na especificação léxica, o analisador léxico identifica um erro e interrompe a análise. Na tabela de transições, o `@` pertence à classe O, e a transição de q0 com a classe O leva a ERR.
+
+### Exemplo 3: inválido sintático
+
+```
+x = (1 + ;
+```
+
+**Por que é inválido:** o lexer aceita, porque todos os símbolos existem. O erro aparece no parser. Depois do `(`, a regra `fator` pede uma expressão. A expressão lê `1`, e o `+` exige um `termo` em seguida (regra `soma`). Mas o próximo token é `;`, e a regra `fator` só aceita `NUM`, `true`, `false`, `ID` ou `(`. Então a regra `fator` é violada.
+
+### Exemplo 4: inválido sintático (laço mal formado)
+
+```
+for (i = 0; i < 10) { print(i); }
+```
+
+**Por que é inválido:** o parser identifica que a estrutura do `for` está incompleta. De acordo com a regra `para` da gramática, o comando `for` exige três cláusulas entre parênteses: inicialização, condição e atualização, separadas por dois pontos e vírgulas. No exemplo, falta a cláusula de atualização (por exemplo, `i = i + 1`) e o segundo ponto e vírgula. O parser lê a condição `i < 10` e espera um `;`, mas encontra `)`. Portanto, a estrutura não corresponde à regra sintática do `for`.
+
+### Exemplo 5: inválido semântico
+
+```
+while (1 + 2) { print(1); }
+```
+
+**Por que é inválido:** a condição do `while` deve ser uma expressão que resulte em booleano (como `x > 0` ou `true`). No exemplo, a expressão `1 + 2` resulta em um valor numérico, e não booleano. Embora a estrutura esteja sintaticamente correta, ocorre um erro na análise semântica devido à incompatibilidade de tipos entre a condição esperada e o valor fornecido. Esse erro é detectado pelo interpretador, na execução, e não pelo parser.

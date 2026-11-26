@@ -17,6 +17,7 @@ A IA serviu como ponto de partida. Ela gerou rascunhos iniciais, e o grupo usou 
 | Lexer (item b) | Rascunho de `src/lexer.py` e dos testes do lexer | Caio |
 | AST (item d) | Rascunho de `src/ast_nodes.py` e dos testes da AST | Caio |
 | Tabela de transições do AFD (item b) | Rascunho da tabela derivada do `lexer.py`, com checagem por simulação | Caio |
+| Exemplos comentados (item a) | Sugestão dos 5 programas | Caio |
  
 ## O que o grupo fez em cima do rascunho
  
@@ -24,6 +25,7 @@ A IA serviu como ponto de partida. Ela gerou rascunhos iniciais, e o grupo usou 
 - Conferimos arquivo por arquivo o conteúdo dos testes, dos exemplos e da AST antes de cada commit.
 - Caio aplicou no lexer a correção apontada pelo Claude (identificadores e números só em ASCII) e incluiu os testes novos que cobrem o caso.
 - Caio conferiu a tabela de transições do AFD seguindo-a à mão com diferentes entradas.
+- Caio escreveu as justificativas dos exemplos e ajustou-as a partir da revisão do Claude.
 
 ## Observações
  
