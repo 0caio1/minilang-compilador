@@ -16,6 +16,12 @@ Detalhes em `declaracao_IA.md` e `docs/diario_de_bordo.md`.
 python -m pytest -q
 ```
 
+## Executar um programa
+```
+python -m src.interpreter exemplos/programa_valido.ml
+python -m src.interpreter exemplos/programa_invalido.ml
+```
+
 ## Estrutura
 - `src/`: lexer, parser, AST e interpretador
 - `tests/validos/` e `tests/invalidos/`: suíte de testes
@@ -25,5 +31,5 @@ python -m pytest -q
 ## Status
 - [x] Lexer
 - [x] Nós da AST
-- [ ] Parser
-- [ ] Interpretador
+- [x] Parser
+- [x] Interpretador
