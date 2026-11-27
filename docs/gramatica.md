@@ -94,6 +94,20 @@ fator        = NUM | "true" | "false" | ID | "(" expressao ")" ;
 | 3 | `+` `-` | esquerda |
 | 4 (menor) | `< > <= >= == !=` | não associativa |
 
+## Regras semânticas (interpretador)
+
+| Regra | Se for violada |
+|---|---|
+| Há dois tipos: inteiro e booleano | — |
+| Variável precisa ser atribuída antes de ser usada | erro semântico |
+| `+ - * /` e `< > <= >=` só aceitam inteiros | erro semântico |
+| `==` e `!=` só comparam valores do mesmo tipo | erro semântico |
+| `/` é divisão inteira truncada em direção a zero: `(0 - 7) / 2` dá `-3` | divisão por zero é erro semântico |
+| A condição de `if`, `while` e `for` precisa ser booleana | erro semântico |
+| Uma única tabela de símbolos global (escopo aninhado está fora do escopo do projeto): bloco não cria escopo, e a variável do `for` continua existindo depois do laço | — |
+| Cada laço repete no máximo 10.000 vezes | erro de execução (provável laço infinito) |
+| `print` mostra booleanos como `true` / `false` | — |
+
 ## Exemplos comentados
 
 ### Exemplo 1: programa válido

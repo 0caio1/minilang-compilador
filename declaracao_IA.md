@@ -19,6 +19,7 @@ A IA serviu como ponto de partida. Ela gerou rascunhos iniciais, e o grupo usou 
 | Tabela de transições do AFD (item b) | Rascunho da tabela derivada do `lexer.py`, com checagem por simulação | Caio |
 | Exemplos comentados (item a) | Sugestão dos 5 programas | Caio |
 | Parser (item c) | Rascunho de `src/parser.py` e dos testes do parser, usando o Claude (Opus 5.5) | Hapolo |
+| Interpretador (item e) | Rascunho de `src/interpreter.py` (interpretador e tabela de símbolos) e dos testes `test_interpreter_*`, `test_lacos.py` e `test_laco_infinito.py`, usando o Claude (Opus 5.5) | Salatiel |
  
 ## O que o grupo fez em cima do rascunho
  
